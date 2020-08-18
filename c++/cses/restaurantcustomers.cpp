@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 #define ll long long
 #define all(x) begin(x), end(x)
-#define f first
-#define s second
 using namespace std;
 
 void setIO(string s) {
@@ -11,24 +9,21 @@ void setIO(string s) {
   freopen((s + ".out").c_str(), "w", stdout);
 }
 
-bool comp (pair<ll, ll>  a, pair<ll, ll> b) { return a.f < b.f; }
-
 int main() {
-  setIO("cowqueue");
-  ll n, t = 0;
+  ll n, s, e;
   cin >> n;
-  vector<pair<ll, ll>> v(n);
+  vector<pair<ll, ll>> A;
   for (ll i = 0; i < n; ++i) {
-    cin >> v[i].f >> v[i].s;
+    cin >> s >> e;
+    A.push_back(make_pair(s, 1));
+    A.push_back(make_pair(e, -1));
   }
-  sort(all(v), comp);
-  for (auto c: v) {
-    if (t < c.f) {
-      t = c.f + c.s;
-    } else {
-      t += c.s;
-    }
+  sort(all(A));
+  ll ans = 0, counter = 0;
+  for (auto c: A) {
+    counter += c.second;
+    ans = max(ans, counter);
   }
-  cout << t << "\n";
+  cout << ans;
   return 0;
 }

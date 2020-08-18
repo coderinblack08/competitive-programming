@@ -1,24 +1,31 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0); cin.tie(0); 
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  freopen("whereami.in", "r", stdin);
-  freopen("whereami.out", "w", stdout);
-  int n;
+  setIO("whereami");
+  ll n;
   string s;
   cin >> n >> s;
-  for(int guess = 1; guess <= n; guess++) {
-    bool good = true;
-    for(int i = 0; i + guess <= n; i++) {
-      for(int j = 0; j < i; j++) {
-        if(s.substr(i, guess) == s.substr(j, guess)) {
-          good = false;
+  for (ll i = 1; i <= n; ++i) {
+    bool ok = true;
+    for (ll j = 0; j + i <= n; ++j) {
+      for (ll k = 0; k < j; ++k) {
+        if (s.substr(j, i) == s.substr(k, i)) {
+          ok = false;
         }
       }
     }
-    if(good) {
-      cout << guess << "\n";
+    if (ok) {
+      cout << i << "\n";
       return 0;
     }
   }
+  return 0;
 }
