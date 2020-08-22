@@ -9,20 +9,24 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("diamond");
-  ll n, k, ans = 0;
-  cin >> n >> k;
+  ll n;
+  cin >> n;
   vector<ll> A(n, 0);
-  for (ll i = 0; i < n; ++i) cin >> A[i];
+  ll L = static_cast<ll>(1e6);
+  vector<ll> COUNT(L + 1, 0);
   for (ll i = 0; i < n; ++i) {
-    ll counter = 0;
-    for (ll j = 0; j < n; ++j) {
-      if (A[j] >= A[i] && A[j] <= A[i] + k) {
-        counter++;
-      }
-    }
-    ans = max(ans, counter);
+    cin >> A[i];
+    ++COUNT[A[i]];
   }
-  cout << ans << "\n";
+  for (ll d = L; d >= 0; --d) {
+    ll count = 0;
+    for (ll x = d; x <= L; x += d) {
+      count += COUNT[x];
+    }
+    if (count >= 2) {
+      cout << d << "\n";
+      return 0;
+    }
+  }
   return 0;
 }

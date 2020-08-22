@@ -9,19 +9,18 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("diamond");
-  ll n, k, ans = 0;
-  cin >> n >> k;
+  ll n; cin >> n;
   vector<ll> A(n, 0);
   for (ll i = 0; i < n; ++i) cin >> A[i];
+  set<ll> S;
+  ll start = 0, ans = 0;
   for (ll i = 0; i < n; ++i) {
-    ll counter = 0;
-    for (ll j = 0; j < n; ++j) {
-      if (A[j] >= A[i] && A[j] <= A[i] + k) {
-        counter++;
-      }
+    while (S.count(A[i])) {
+      S.erase(A[start]);
+      start++;
     }
-    ans = max(ans, counter);
+    S.insert(A[i]);
+    ans = max(ans, i - start + 1);
   }
   cout << ans << "\n";
   return 0;

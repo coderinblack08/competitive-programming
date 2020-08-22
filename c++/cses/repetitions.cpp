@@ -9,16 +9,17 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("pails");
-  ll x, y, m;
-  cin >> x >> y >> m;
-  ll ans = 0;
-  for (ll i = 0; i * y < m; ++i) {
-    ll local = 0;
-    local += i * y;
-    local += ((m - local) / x) * x;
-    ans = max(ans, local);
+  ll ans = 0, counter = 1;
+  string dna;
+  cin >> dna;
+  for(ll i = 0LL; i < dna.length(); ++i){
+    if(dna[i] != dna[i - 1]){
+      ans = max(ans, counter);
+      counter = 0;
+    }
+    counter++;
   }
+  ans = max(ans,counter);
   cout << ans;
   return 0;
 }

@@ -2,25 +2,37 @@
 #define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0); cin.tie(0); 
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  int n,b;
-  cin>>n>>b;
-  int x[n],y[n];
-  for(int i=0;i<n;i++)
-    cin>>x[i]>>y[i];
-  int a=n;
-  for(int i=0;i<n;i++)
-    for(int j=0;j<n;j++){
-      int posx=x[i]+1,posy=y[j]+1;
-      int ur=0,ul=0,dr=0,dl=0;
-      for(int l=0;l<n;l++){
-        if(x[l]<posx&&y[l]>posy)ul++;
-        if(x[l]>posx&&y[l]>posy)ur++;
-        if(x[l]<posx&&y[l]<posy)dl++;
-        if(x[l]>posx&&y[l]<posy)dr++;
+  setIO("balancing");
+  ll n;
+  cin >> n;
+  vector<pair<ll, ll>> A(n);
+  for (ll i = 0; i < n; ++i) cin >> A[i].first >> A[i].second;
+  ll ans = n;
+  for (ll i = 0; i < n; ++i) {
+    for (ll j = 0; j < n; ++j) {
+      ll x = A[i].first + 1, y = A[j].second + 1;
+      ll upper_right = 0, lower_right = 0, upper_left = 0, lower_left = 0;
+      for (auto& cow: A) {
+        if (cow.first > x && cow.second > y) {
+          upper_right++;
+        } else if (cow.first > x && cow.second < y) {
+          lower_right++;
+        } else if (cow.first < x && cow.second > y) {
+          upper_left++;
+        } else {
+          lower_left++;
+        }
       }
-      a=min(a,max(max(ul,ur),max(dl,dr)));
+      ans = min(ans, max(max(upper_left, lower_left), max(upper_right, lower_right)));
     }
-  cout<<a;
+  }
+  cout << ans;
   return 0;
 }

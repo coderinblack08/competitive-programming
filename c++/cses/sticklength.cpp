@@ -9,16 +9,14 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("pails");
-  ll x, y, m;
-  cin >> x >> y >> m;
-  ll ans = 0;
-  for (ll i = 0; i * y < m; ++i) {
-    ll local = 0;
-    local += i * y;
-    local += ((m - local) / x) * x;
-    ans = max(ans, local);
+  ll n; cin >> n;
+  vector<ll> A(n);
+  for (ll i = 0; i < n; ++i) cin >> A[i];
+  sort(A.begin(), A.end());
+  ll target = A[n / 2], cost = 0;
+  for (ll i = 0; i < n; ++i) {
+    cost += abs(target - A[i]);
   }
-  cout << ans;
+  cout << cost << "\n";
   return 0;
 }

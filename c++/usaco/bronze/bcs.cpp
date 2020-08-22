@@ -2,6 +2,12 @@
 #define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0); cin.tie(0); 
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int n,k;
 bool pieces[10][8][8];
 
@@ -12,6 +18,7 @@ bool getValue(int piece,int x,int y) {
 }
 
 int main() {
+  setIO("bcs");
   cin>>n>>k;
   bool goal[n][n];
   for(int i=0;i<n;i++){

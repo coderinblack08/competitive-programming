@@ -9,16 +9,6 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("pails");
-  ll x, y, m;
-  cin >> x >> y >> m;
-  ll ans = 0;
-  for (ll i = 0; i * y < m; ++i) {
-    ll local = 0;
-    local += i * y;
-    local += ((m - local) / x) * x;
-    ans = max(ans, local);
-  }
-  cout << ans;
+  
   return 0;
 }
