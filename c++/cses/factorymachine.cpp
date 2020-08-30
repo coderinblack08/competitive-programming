@@ -9,14 +9,6 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("outofplace");
-  ll n, ans = 0; cin >> n;
-  vector<ll> A(n), B(n);
-  for (ll i = 0; i < n; ++i) { cin >> A[i]; B[i] = A[i]; }
-  sort(B.begin(), B.end());
-  for (ll i = 0; i < n; ++i) {
-    if (A[i] != B[i]) ans++;
-  }
-  cout << ans - 1;
+  
   return 0;
 }

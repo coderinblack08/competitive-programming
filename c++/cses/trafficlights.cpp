@@ -9,18 +9,21 @@ void setIO(string s) {
 }
 
 int main() {
-  ll n, a; cin >> n;
-  multiset<ll> S;
+  ll x, n, a;
+  cin >> x >> n;
+  multiset<ll> L;
+  set<ll> S;
+  L.insert(x);
+  S.insert(0); S.insert(x);
   for (ll i = 0; i < n; ++i) {
     cin >> a;
     auto it = S.upper_bound(a);
-    if (it == S.end()) {
-      S.insert(a);
-    } else {
-      S.erase(it);
-      S.insert(a);
-    }
+    ll upper = *it; it--;
+    ll lower = *it;
+    L.erase(L.find(upper - lower));
+    L.insert(upper - a); L.insert(a - lower);
+    S.insert(a);
+    cout << *(L.rbegin()) << endl;    
   }
-  cout << S.size() << endl;
   return 0;
 }

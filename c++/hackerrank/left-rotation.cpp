@@ -9,14 +9,17 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("outofplace");
-  ll n, ans = 0; cin >> n;
-  vector<ll> A(n), B(n);
-  for (ll i = 0; i < n; ++i) { cin >> A[i]; B[i] = A[i]; }
-  sort(B.begin(), B.end());
-  for (ll i = 0; i < n; ++i) {
-    if (A[i] != B[i]) ans++;
+  ll n, k;
+  cin >> n >> k;
+  vector<ll> A(n);
+  for (ll i = 0; i < n; ++i) cin >> A[i];
+  for (ll i = 0; i < k; ++i) {
+    ll first_element = A[0];
+    A.erase(A.begin());
+    A.push_back(first_element);
   }
-  cout << ans - 1;
+  for (ll i = 0; i < n; ++i) {
+    cout << A[i] << " ";
+  }
   return 0;
 }

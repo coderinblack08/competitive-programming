@@ -8,15 +8,16 @@ void setIO(string s) {
   freopen((s + ".out").c_str(), "w", stdout);
 }
 
+vector<int> possibleAnswers(2000);
+
+void tuesday(ll milk, vector<ll> &A, vector<ll> &B) {
+  
+}
+
 int main() {
-  setIO("outofplace");
-  ll n, ans = 0; cin >> n;
-  vector<ll> A(n), B(n);
-  for (ll i = 0; i < n; ++i) { cin >> A[i]; B[i] = A[i]; }
-  sort(B.begin(), B.end());
-  for (ll i = 0; i < n; ++i) {
-    if (A[i] != B[i]) ans++;
-  }
-  cout << ans - 1;
+  vector<ll> A(10, 0), B(10, 0);
+  for (ll i = 0; i < A.size(); i++) cin >> A[i];
+  for (ll i = 0; i < B.size(); i++) cin >> B[i];
+  tuesday(1000, A, B);
   return 0;
 }
