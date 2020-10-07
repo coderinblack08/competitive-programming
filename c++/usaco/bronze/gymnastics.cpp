@@ -1,40 +1,47 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  freopen("gymnastics.in","r",stdin);
-  freopen("gymnastics.out","w",stdout);
-  int k,n;
-  cin>>k>>n;
-  int ar[k][n];
-  for(int i=0;i<k;i++){
-    for(int j=0;j<n;j++){
-      cin>>ar[i][j];
+  setIO("gymnastics");
+  ll k, n;
+  cin >> k >> n;
+  ll A[k][n];
+  for (ll i = 0; i < k; i++) {
+    for (ll j = 0; j < n; j++) {
+      cin >> A[i][j];
     }
   }
-  int pairs=0;
-  for(int i=1;i<=n;i++){
-    for(int j=1;j<=n;j++){
-      int c=0;
-      for(int p=0;p<k;p++){
-        int ai,bi;
-        for(int z=0;z<n;z++){
-          if(ar[p][z]==i){
-            ai=z;
+  ll pairs = 0;
+  for (ll i = 1; i <= n; i++) {
+    for (ll j = 1; j <= n; j++) {
+      ll count = 0;
+      for (ll a = 0; a < k; a++) {
+        ll foundA, foundB;
+        for (ll b = 0; b < n; b++) {
+          if (A[a][b] == i) {
+            foundA = b;
           }
-          if(ar[p][z]==j){
-            bi=z;
+          if (A[a][b] == j) {
+            foundB = b;
           }
         }
-        if(ai<bi){
-          c++;
+        if (foundA < foundB) {
+          count++;
         }
       }
-      if(c==k){
+      if (count == k) {
         pairs++;
       }
     }
   }
-  cout<<pairs;
+  cout << pairs << "\n";
   return 0;
 }

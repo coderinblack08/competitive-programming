@@ -1,23 +1,29 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0); cin.tie(0); 
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  freopen("breedflip.in","r",stdin);
-  freopen("breedflip.out","w",stdout);
-  int n,ans=0;
-  string a,b;
-  cin>>n>>a>>b;
-  bool mismatched=false;
-  for(int i=0;i<n;i++){
-    if(a[i]!=b[i]){
-      if(!mismatched){
-        ans++;
-        mismatched=true;
+  setIO("breedflip");
+  ll n, count = 0;
+  string a, b;
+  cin >> n >> a >> b;
+  bool different = false;
+  for (ll i = 0; i < n; i++) {
+    if (a[i] != b[i]) {
+      if (!different) {
+        count++;
+        different = true;      
       }
     } else {
-      mismatched=false;
+      different = false;
     }
   }
-  cout<<ans;
+  cout << count << "\n";
   return 0;
 }

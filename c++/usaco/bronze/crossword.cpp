@@ -3,23 +3,33 @@
 using namespace std;
 
 int main() {
-  int n,m;
-  cin>>n>>m;
-  char g[n][m];
-  for(int i=0;i<n;i++)
-    for(int j=0;j<m;j++)
-      cin>>g[i][j];
-  int a=0;
-  for(int i=0;i<n;i++)
-    for(int j=0;j<m;j++)
-      if(((j==0||g[i][j-1]=='#')&&j+2<m&&g[i][j]=='.'&&g[i][j+1]=='.'&&g[i][j+2]=='.')||((i==0||g[i-1][j]=='#')&&i+2<n&&g[i][j]=='.'&&g[i+1][j]=='.'&&g[i+2][j]=='.')){
-        g[i][j]='!';
-        a++;
+  freopen("crosswords.in", "r", stdin);
+  freopen("crosswords.out", "w", stdout);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  ll n, m;
+  cin >> n >> m;
+  char G[n][m];
+  for (ll i = 0; i < n; ++i) {
+    for (ll j = 0; j < m; ++j) {
+      cin >> G[i][j];
+    }
+  }
+  vector<pair<ll, ll>> S;
+  for (ll r = 0; r < n; ++r) {
+    for (ll c = 0; c < m; ++c) {
+      if (G[r][c] == '.') {
+        if ((c == 0 || (c != 0 && G[r][c - 1] == '#')) && G[r][c + 1] == '.' && G[r][c + 2] == '.' && c + 2 < m) {
+          S.push_back(make_pair(r + 1, c + 1));
+        } else if ((r == 0 || (r != 0 && G[r - 1][c] == '#')) && G[r + 1][c] == '.' && G[r + 2][c] == '.' && r + 2 < n) {
+          S.push_back(make_pair(r + 1, c + 1));
+        }
       }
-  cout<<a<<"\n";
-  for(int i=0;i<n;i++)
-    for(int j=0;j<m;j++)
-      if(g[i][j]=='!')
-        cout<<i+1<<" "<<j+1<<"\n";
+    }
+  }
+  cout << S.size() << "\n";
+  for (auto clue : S) {
+    cout << clue.first << " " << clue.second << "\n";
+  }
   return 0;
 }

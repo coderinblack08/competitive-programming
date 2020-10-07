@@ -1,23 +1,47 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  int n;
+  setIO("photo");
+  ll n;
   cin >> n;
-  int b[n - 1], d[n - 3];
-  for(int i = 0; i < n - 1; ++i) {
-    cin >> b[i];
+  vector<ll> A(n);
+  for (ll i = 0; i < n - 1; i++) {
+    cin >> A[i];
   }
-  for(int i = 2; i < n; ++i) {
-    d[i] = b[i - 1] - b[i - 2];
-  }
-  for(int s = 0; s < n; ++s) {
-    int a[n];
-    bool used[n];
-    a[0] = s;
-    a[1] = b[0] - s;
-    for(int j = 2; j < n; ++j) {
-      a[j] = a[j - 2] + d[j];
+  for (ll a = 1; a < n + 1; a++) {
+    vector<ll> B(n);
+    set<ll> S;
+    B[0] = a;
+    S.insert(B[a]);
+    bool bad = false;
+    for (ll i = 1; i < n; i++) {
+      ll ai = A[i - 1] - B[i - 1];
+      if (S.count(ai) || !(1 <= ai && ai <= n)) {
+        bad = true;
+        break;
+      }
+      S.insert(ai);
+      B[i] = ai;
+    }
+    if (bad) {
+      continue;
+    }
+    for (ll i = 0; i < n; i++) {
+      cout << B[i];
+      if (i < n - 1) {
+        cout << ' ';
+      } else {
+        cout << "\n";
+      }
     }
   }
   return 0;
