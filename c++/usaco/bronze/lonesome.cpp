@@ -1,27 +1,34 @@
 #include <bits/stdc++.h>
 #define ll long long
+#define pll pair<ll, ll>
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-  int n;
-  cin>>n;
-  ll x[n],y[n];
-  for(int i=0;i<n;i++)
-    cin>>x[i]>>y[i];
-  ll max=0;
-  int c1,c2;
-  for(int i=0;i<n;i++){
-    for(int j=i+1;j<nt;j++){
-      ll dist=pow(x[i]-x[j],2)+pow(y[i]-y[j],2);
-      if(dist>max){
-        max=dist;
-        c1=i;
-        c2=j;
+  ll n;
+  cin >> n;
+  vector<pll> cows(n);
+  for (ll i = 0; i < n; i++) {
+    cin >> cows[i].first >> cows[i].second;
+  }
+  ll first, second;
+  ll mx = -1;
+  for (ll i = 0; i < n; i++) {
+    for (ll j = i + 1; j < n; j++) {
+      ll dist = pow((cows[j].first - cows[i].first), 2) + pow((cows[j].second - cows[i].second), 2);
+      if (dist > mx) {
+        first = i + 1;
+        second = j + 1;
+        mx = dist;
       }
     }
   }
-  cout<<c1+1<<" "<<c2+1;
+  cout << first << " " << second << "\n";
   return 0;
 }

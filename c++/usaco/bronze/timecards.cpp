@@ -1,21 +1,32 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
 
+void setIO(string s) {
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  freopen((s + ".in").c_str(), "r", stdin);
+  freopen((s + ".out").c_str(), "w", stdout);
+}
+
 int main() {
-  int n, m;
+  ll n, m;
   cin >> n >> m;
-  int s[n] = {0}, t[n] = {0};
-  for (int i = 0; i < m; i++) {
-    int c, h, m;
-    string cmd;
-    cin >> c >> cmd >> h >> m;
-    if (cmd == "START") {
-      s[c - 1] = h * 60 + m;
+  vector<ll> start(n + 1, 0), timespent(n + 1, 0);
+  for (ll i = 0; i < m; i++) {
+    ll c, hh, mm;
+    string keyword;
+    cin >> c >> keyword >> hh >> mm;
+    ll time = hh * 60 + mm;
+    if (keyword == "START") {
+      start[c] = time;
     } else {
-      t[c - 1] += (h * 60 + m) - s[c - 1];
+      timespent[c] += time - start[c];
     }
   }
-  for (int i = 0; i < n; i++)
-    cout << t[i] / 60 << " " << t[i] % 60 << "\n";
+  for (ll i = 1; i <= n; i++) {
+    ll time = timespent[i];
+    cout << time / 60 << " " << time % 60 << endl;
+  }
   return 0;
 }

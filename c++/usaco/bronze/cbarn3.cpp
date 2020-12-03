@@ -12,26 +12,19 @@ void setIO(string s) {
 int main() {
   ll n;
   cin >> n;
-  vector<ll> A(n);
+  vector<ll> R(n);
   for (ll i = 0; i < n; i++) {
-    cin >> A[i];
-    A[i]--;
+    cin >> R[i];
   }
-  vector<ll> order(n);
+  ll ans = LONG_LONG_MAX;
   for (ll i = 0; i < n; i++) {
-    cin >> order[i];
-  }
-  vector<ll> directions(n);
-  for (ll i = 0; i < 3; i++) {
+    ll c = 0;
     for (ll j = 0; j < n; j++) {
-      directions[j] = order[A[j]];
+      ll cur = (j + i) % n;
+      c += j * R[cur];
     }
-    for (ll j = 0; j < n; j++) {
-      order[j] = directions[j];
-    }
+    ans = min(ans, c);
   }
-  for (ll i = 0; i < n; i++) {
-    cout << order[i] << "\n";
-  }
+  cout << ans << endl;
   return 0;
 }

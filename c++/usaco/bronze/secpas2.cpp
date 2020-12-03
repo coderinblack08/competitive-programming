@@ -10,18 +10,8 @@ void setIO(string s) {
 }
 
 int main() {
-  ll m, n;
-  cin >> m >> n;
-  vector<ll> digits(10, 0);
-  for (ll i = m; i <= n; i++) {
-    ll x = i;
-    while (x) {
-      digits[x % 10]++;
-      x /= 10;
-    }
-  }
-  for (auto digit : digits) {
-    cout << digit << " ";
-  }
+  ll n;
+  cin >> n;
+
   return 0;
 }

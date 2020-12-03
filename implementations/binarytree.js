@@ -1,9 +1,11 @@
 class Node {
   left = null;
   right = null;
+
   constructor(data) {
     this.data = data;
   }
+
   insert = (value) => {
     if (value <= this.data) {
       if (this.left === null) {
@@ -19,6 +21,7 @@ class Node {
       }
     }
   };
+
   contains = (value) => {
     if (value === this.data) return true;
     if (value < this.data) {
@@ -29,6 +32,7 @@ class Node {
       return this.right.contains(value);
     }
   };
+
   inOrder = () => {
     if (this.left !== null) {
       this.left.inOrder();

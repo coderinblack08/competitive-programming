@@ -9,6 +9,8 @@ void setIO(string s) {
   freopen((s + ".out").c_str(), "w", stdout);
 }
 
-int main() {
-  return 0;
+bool crossing(ll a, ll b) {
+  ll A = 0, B = 0, AB = 0;
+  for (ll i = 0; i < 25; i++) {
+    }
 }

@@ -10,29 +10,25 @@ void setIO(string s) {
 }
 
 int main() {
-  setIO("shell");
-  ll n, ans = 0;
+  ll n;
   cin >> n;
-  vector<ll> A(n), B(n), G(n);
+  vector<ll> A(n, 0);
   for (ll i = 0; i < n; i++) {
-    cin >> A[i] >> B[i] >> G[i];
+    cin >> A[i];
   }
-  for (ll i = 1; i <= 3; i++) {
-    ll at = i, c = 0;
+  ll best = 0;
+  ll ans = 0;
+  for (ll i = 2; i <= 1000; i++) {
+    ll score = 0;
     for (ll j = 0; j < n; j++) {
-      bool skip = false;
-      if (at == A[j]) {
-        at = B[j];
-        skip = true;
-      }
-      if (at == B[j] && !skip) {
-        at = A[j];
-      }
-      if (at == G[j]) {
-        c++;
+      if (A[j] % i == 0) {
+        score++;
       }
     }
-    ans = max(ans, c);
+    if (score > best) {
+      best = score;
+      ans = i;
+    }
   }
   cout << ans << endl;
   return 0;
