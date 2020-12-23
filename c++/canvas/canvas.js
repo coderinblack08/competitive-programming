@@ -1,13 +1,16 @@
-let stack = [];
-for (let i = 0; i <= 37; i++) {
-  if (i === 0) {
-    stack.push(7);
-  } else {
-    const newStack = [];
-    stack.forEach((number) => {
-      newStack.push(number - 1, number + 1);
-    });
-    stack = newStack;
+let expression = '8/4-2+5/3+10/24/2+10-16/2'.split('');
+
+for (let i = 0; i < expression.length; i++) {
+  for (let j = i + 1; j < expression.length; j++) {
+    let newExpression = [
+      ...expression.slice(0, i),
+      '(',
+      ...expression.slice(i, j),
+      ')',
+      ...expression.slice(j),
+    ];
+    if (eval(newExpression.join('') === 0)) {
+      console.log(newExpression.join(''));
+    }
   }
 }
-console.log(stack);
