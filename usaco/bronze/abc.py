@@ -4,7 +4,7 @@ import sys
 
 line = list(map(int, input().split()))
 ans = []
-n = len(line)
+n = 7
 
 for i in range(n):
   for j in range(n):
